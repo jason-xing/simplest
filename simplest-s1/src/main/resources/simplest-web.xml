@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simplest-web>
+  <actions>
+    <action path="/UserRegisterEnter.action" url="/User" urlCp="RegisterEnter"/>
+    <action path="/UserRegister.action" url="/User" urlCp="Register"/>
+    <action path="/UserLogin.action" url="/User" urlCp="Login"/>
+    <action path="/UserLogout.action" url="/User" urlCp="Logout"/>
+    <action path="/MyInfoEnter.action" url="/User" urlCp="MyInfoEnter"/>
+    <action path="/MyInfoSave.action" url="/User" urlCp="MyInfoSave"/>
+    <action path="/UserDelete.action" url="/User" urlCp="Delete"/>
+    <action path="/UserModify.action" url="/User" urlCp="Modify"/>
+    <action path="/UserQuery.action" url="/User" urlCp="Query"/>
+  </actions>
+</simplest-web>

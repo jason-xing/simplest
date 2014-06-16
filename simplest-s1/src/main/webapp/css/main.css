@@ -1,0 +1,148 @@
+#header {
+    /* 居中 */
+    margin:0px auto;
+    width:1260px;
+    height:60px;
+    /* 背景图片 */
+    background-image:url(../image/background-header.jpg);
+    /* 背景图片放到层的位置。横向 纵向 */
+    background-position:0px -340px;
+    border-top:1px solid;
+    border-left:1px solid;
+    border-right:1px solid;
+    /* 子元素才能position:absolute */
+    position:relative;
+}
+#logo {
+    margin-top:5px;
+    margin-right:1px;
+    text-align:right;
+    font-size:1.5em;
+    font-weight:bold;
+}
+/* 注销 */
+#logout {
+    /* 控制显示位置，使用了相对定位嵌套的绝对定位 */
+    position:absolute;
+    right:0px;
+    bottom:0px;
+}
+
+/* 提示 */
+#prompt {
+    /* 居中 */
+    margin:0px auto;
+    width:1260px;
+    /* height和line-height设置为相等是为了垂直居中 */
+    height:17px;
+    line-height:17px;
+    /* 背景图片 */
+    background-image:url(../image/background-body.jpg);
+    border-top:1px solid;
+    border-left:1px solid;
+    border-right:1px solid;
+}
+
+#body {
+    /* 居中 */
+    margin:0px auto;
+    width:1260px;
+    height:600px;
+    /* 背景图片 */
+    background-image:url(../image/background-body.jpg);
+    border-top:1px solid;
+    border-left:1px solid;
+    border-right:1px solid;
+}
+
+#footer {
+    /* 居中 */
+    margin:0px auto;
+    width:1260px;
+    /* height和line-height设置为相等是为了垂直居中 */
+    height:17px;
+    line-height:17px;
+    /* 背景图片 */
+    background-image:url(../image/background-header.jpg);
+    /* 背景图片放到层的位置。横向 纵向 */
+    background-position:0px -340px;
+    border:1px solid;
+    text-align:center;
+}
+
+/* 菜单 */
+#menu {
+    /* 居中 */
+    margin:0px auto;
+    width:1260px;
+    height:0px;
+    border:0px;
+    /* 子元素才能position:absolute */
+    position:relative;
+}
+/* 一级菜单 */
+#menuInner {
+    /* 去边框空白 */
+    margin:0px;
+    padding:0px;
+    /* 控制显示位置，使用了相对定位嵌套的绝对定位 */
+    position:absolute;
+    left:0px;
+    top:-18px;
+    /* 去掉项前面的点 */
+    list-style:none;
+}
+/* 一级菜单列表项 */
+#menuInner li {
+    /* 横向 */
+    float:left;
+    /* 子元素(这里指二级菜单ul)才能position:absolute */
+    position:relative;
+}
+/* 一级菜单项(一级菜单列表项下的链接部分) */
+#menuInner li a {
+    /* 显示的样子 */
+    display:block;
+    text-decoration:none;
+    /* 高宽 */
+    height:17px;
+    width:100px;
+    /* 顶上和右边有边框 */
+    border-top:1px solid;
+    border-right:1px solid;
+    /* 圆角 */
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    background-color:#669DE0;
+    text-align:center;
+}
+/* 二级菜单(一级菜单列表项下的ul部分) */
+#menuInner li ul {
+    padding:0px;
+    /* 默认不显示 */
+    display:none;
+    /* 控制显示位置，使用了相对定位嵌套的绝对定位 */
+    position:absolute;
+    left:-1px;
+    /* 去掉项前面的点 */
+    list-style:none;
+    border-bottom:1px solid;
+    border-left:1px solid;
+}
+/* 鼠标放到一级菜单列表项上，它下的ul(二级菜单)的样式，这里是显示出来 */
+#menuInner li:hover ul, #menuInner li.over ul {
+    display:block;
+}
+/* 二级菜单项(二级菜单列表项下的链接部分) */
+#menuInner li ul li a {
+    /* 使用图片没必要，元素太小 */
+    background-color:#669DE0;
+    /* 清除上级的圆角样式的影响 */
+    border-top-left-radius:0px;
+    border-top-right-radius:0px;
+}
+/* 鼠标放到菜单项时，菜单项的样式。注意：二级菜单项也会应用到该样式的 */
+#menuInner li a:hover {
+    /* 使用背景图片没必要，元素太小 */
+    background-color:#E5E5E5;
+}

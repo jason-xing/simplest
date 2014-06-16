@@ -1,0 +1,16 @@
+一. 权限控制设计
+1. 模型基于RBAC(Role-Based Access Control)
+  1>. 关键模型：User, Role, Permission(Resource + Operation)
+  2>. RBAC三原则：最小权限原则、权限制约原则、权限抽象原则
+2. Role单继承
+  1>.除两个特殊角色Administrator和Anonymous，一般登录用户角色为单继承体系，整个体系仅有一个根角色。
+3. 权限控制两部分
+  1>. 前台菜单显示控制。
+    A. 菜单为单继承体系，整个体系仅有一个根菜单。
+  2>. 后台每次请求权限控制
+    A. Resource首先分为非法(无效)资源(如客户手动输入了错误的URL)和合法资源(注册系统中的)，然后合法
+              资源再分为匿名(无需登录)可访问资源和登录用户可访问资源。
+    B. 匿名访问可访问的资源，新建一个角色Anonymous，然后将资源挂到该角色上。
+              对于一般登录用户，判断可访问的资源时，也要把上面的加上，否则，登录用户访问这些资源时会报错的。
+              对于Administrator，在程序里为它专门取所有的资源(当然前台菜单显示也这么处理)。
+    C. 具体实现细节可参见org.projectsample.simplest.s1.web.filter.SecurityFilter。

@@ -1,0 +1,12 @@
+This project is the first sample using the basic libraries of the simplest project. It includes the
+following modules:
+1. Security Module. A common module referring the users and security. It includes following contents:
+    1>. resource management
+    2>. permission management and 
+    3>. role management
+    4>. user management
+    5>. permission definition
+    6>. role and permission binding
+    7>. user and role binding
+2. PSI(Purchase, Sales, Inventory) Application. An application sample. It show a simple application 
+about purchasing, sales and inventory.

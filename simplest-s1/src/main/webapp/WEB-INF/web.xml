@@ -1,0 +1,65 @@
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    http://java.sun.com/xml/ns/javaee/web-app_2_4.xsd">
+  <display-name>Archetype Created Web Application</display-name>
+  <listener>
+    <listener-class>org.projectsample.simplest.web.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.projectsample.simplest.s1.web.listener.SecurityDataListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.projectsample.simplest.s1.web.listener.PsiDataListener</listener-class>
+  </listener>
+    
+  <servlet>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <servlet-class>org.projectsample.simplest.web.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <!-- If URL is like "ont.action?p1=v1", it's also matched, because it will exclude "?p1=v1" -->
+    <url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+    <filter-name>SecurityFilter</filter-name>
+    <filter-class>org.projectsample.simplest.s1.web.filter.SecurityFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>SecurityFilter</filter-name>
+    <url-pattern>*.action</url-pattern>
+    <url-pattern>*.jsp</url-pattern>
+    <url-pattern>*.html</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.projectsample.simplest.web.filter.CharacterEncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- Note: The location of the error page will not be filtered by any filter -->
+  <error-page>
+    <exception-type>org.projectsample.simplest.web.exception.WebException</exception-type>
+    <location>/jsp/exception/WebException.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>org.projectsample.simplest.s1.exception.DbException</exception-type>
+    <location>/jsp/exception/DbException.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>org.projectsample.simplest.s1.security.exception.NoPermissionException</exception-type>
+    <location>/jsp/exception/NoPermissionException.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/jsp/exception/Exception.jsp</location>
+  </error-page>
+  <welcome-file-list> 
+    <welcome-file>/jsp/Index.jsp</welcome-file> 
+  </welcome-file-list> 
+</web-app>
