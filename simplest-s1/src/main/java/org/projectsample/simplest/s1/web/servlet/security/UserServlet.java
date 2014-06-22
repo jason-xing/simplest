@@ -22,10 +22,15 @@ import org.projectsample.simplest.s1.security.service.RoleService;
 import org.projectsample.simplest.s1.security.service.UserService;
 import org.projectsample.simplest.s1.web.utils.Resource;
 import org.projectsample.simplest.s1.web.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns="/User")
 public class UserServlet extends HttpServlet {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserServlet.class);
 
     private final static String MAIN_PAGE = "/jsp/Main.jsp";
     private final static String INDEX_PAGE = "/jsp/Index.jsp";

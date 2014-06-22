@@ -27,10 +27,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.projectsample.simplest.s1.security.exception.InValidUrlException;
+import org.projectsample.simplest.s1.security.exception.InvalidUrlException;
 import org.projectsample.simplest.s1.security.exception.NoPermissionException;
+import org.projectsample.simplest.s1.security.exception.SessionInvalidException;
 import org.projectsample.simplest.s1.security.service.ResourceService;
 import org.projectsample.simplest.s1.security.service.RoleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Security filter.
@@ -38,7 +41,9 @@ import org.projectsample.simplest.s1.security.service.RoleService;
  * @author Jason Xing
  */
 public class SecurityFilter implements Filter {
-    
+
+    private static final Logger logger = LoggerFactory.getLogger(SecurityFilter.class);
+
     private RoleService roleService = new RoleService();
     private ResourceService resourceService = new ResourceService();
 
@@ -60,23 +65,28 @@ public class SecurityFilter implements Filter {
         if (!path.equals("")) {
             // Check whether the path is a valid URL(one of all the registered URLs).
             if (!resourceService.isValidUrl(path)) {
-                throw new InValidUrlException();
+                throw new InvalidUrlException();
             }
             // All the URLs of Anonymous
             Set<String> urlsOfAnonymous = roleService.getUrlsOfAnonymous();
-            // Already login
-            if (session != null && session.getAttribute("user") != null) {
-                @SuppressWarnings("unchecked")
-                Set<String> urls = (Set<String>)session.getAttribute("urls");
-                // Throw NoPermissionException if the path is neither in the URLs of the user nor in the URLs of Anonymous.
-                if (!urls.contains(path) && !urlsOfAnonymous.contains(path)) {
-                    throw new NoPermissionException();
-                }
-            // Not login
+            // The path is in the URLs of Anonymous. It can pass.
+            if (urlsOfAnonymous.contains(path)) {
+                
             } else {
-                // Throw NoPermissionException if the path is not in the URLs of Anonymous.
-                if (!urlsOfAnonymous.contains(path)) {
-                    throw new NoPermissionException();
+                // the session is invalid.
+                // Such as: Not login, logout, session timeout
+                if (session == null) {
+                    throw new SessionInvalidException();
+                // Already login
+                } else if (session.getAttribute("user") != null) {
+                    @SuppressWarnings("unchecked")
+                    Set<String> urls = (Set<String>)session.getAttribute("urls");
+                    // Throw NoPermissionException if the path is neither in the URLs of the user nor in the URLs of Anonymous.
+                    if (!urls.contains(path) && !urlsOfAnonymous.contains(path)) {
+                        throw new NoPermissionException();
+                    }
+                } else {
+                    throw new RuntimeException();
                 }
             }
         }

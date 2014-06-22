@@ -3,6 +3,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
     http://java.sun.com/xml/ns/javaee/web-app_2_4.xsd">
   <display-name>Archetype Created Web Application</display-name>
+  
   <listener>
     <listener-class>org.projectsample.simplest.web.ContextLoaderListener</listener-class>
   </listener>
@@ -43,6 +44,7 @@
   </filter-mapping>
 
   <!-- Note: The location of the error page will not be filtered by any filter -->
+  <!-- global -->
   <error-page>
     <exception-type>org.projectsample.simplest.web.exception.WebException</exception-type>
     <location>/jsp/exception/WebException.jsp</location>
@@ -52,14 +54,25 @@
     <location>/jsp/exception/DbException.jsp</location>
   </error-page>
   <error-page>
-    <exception-type>org.projectsample.simplest.s1.security.exception.NoPermissionException</exception-type>
-    <location>/jsp/exception/NoPermissionException.jsp</location>
-  </error-page>
-  <error-page>
     <exception-type>java.lang.Exception</exception-type>
     <location>/jsp/exception/Exception.jsp</location>
   </error-page>
+  <!-- security -->
+  <error-page>
+    <exception-type>org.projectsample.simplest.s1.security.exception.NoPermissionException</exception-type>
+    <location>/jsp/security/exception/NoPermissionException.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>org.projectsample.simplest.s1.security.exception.SessionInvalidException</exception-type>
+    <location>/jsp/security/exception/SessionInvalidException.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>org.projectsample.simplest.s1.security.exception.InvalidUrlException</exception-type>
+    <location>/jsp/security/exception/InvalidUrlException.jsp</location>
+  </error-page>
+  
   <welcome-file-list> 
     <welcome-file>/jsp/Index.jsp</welcome-file> 
-  </welcome-file-list> 
+  </welcome-file-list>
+  
 </web-app>

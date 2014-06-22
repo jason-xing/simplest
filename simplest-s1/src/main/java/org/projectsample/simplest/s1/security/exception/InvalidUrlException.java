@@ -16,22 +16,22 @@
 package org.projectsample.simplest.s1.security.exception;
 
 /**
- * Have no the permission.
+ * The URL is invalid.
  * 
  * @author Jason Xing
  */
 @SuppressWarnings("serial")
-public class InValidUrlException extends RuntimeException {
+public class InvalidUrlException extends RuntimeException {
   
-   public InValidUrlException() {
+   public InvalidUrlException() {
        super();
    }
 
-   public InValidUrlException(String message) {
+   public InvalidUrlException(String message) {
        super(message);
    }
 
-   public InValidUrlException(Exception e) {
+   public InvalidUrlException(Exception e) {
        super(e.toString());
    }
    
