@@ -63,29 +63,30 @@ public class SecurityFilter implements Filter {
         String path = this.getPath(req);
         // Filter only when the path is not empty.
         if (!path.equals("")) {
-            // Check whether the path is a valid URL(one of all the registered URLs).
+            // Check whether the path is a valid(registered) URL.
             if (!resourceService.isValidUrl(path)) {
                 throw new InvalidUrlException();
             }
             // All the URLs of Anonymous
             Set<String> urlsOfAnonymous = roleService.getUrlsOfAnonymous();
-            // The path is in the URLs of Anonymous. It can pass.
+            // If the path is in the URLs of Anonymous, It can pass.
             if (urlsOfAnonymous.contains(path)) {
-                
+                // Pass
             } else {
                 // the session is invalid.
-                // Such as: Not login, logout, session timeout
+                // Such as: not login, logout, session timeout
                 if (session == null) {
                     throw new SessionInvalidException();
                 // Already login
                 } else if (session.getAttribute("user") != null) {
                     @SuppressWarnings("unchecked")
-                    Set<String> urls = (Set<String>)session.getAttribute("urls");
-                    // Throw NoPermissionException if the path is neither in the URLs of the user nor in the URLs of Anonymous.
-                    if (!urls.contains(path) && !urlsOfAnonymous.contains(path)) {
+					Set<String> urls = (Set<String>)session.getAttribute("urls");
+                    // Throw NoPermissionException if the path is neither 
+                    // in the URLs of the user nor in the URLs of Anonymous.
+                    if (!urls.contains(path)) {
                         throw new NoPermissionException();
                     }
-                } else {
+                }  else {
                     throw new RuntimeException();
                 }
             }
