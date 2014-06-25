@@ -14,7 +14,7 @@
     </div>
     <div class="smart-box-body">
         <form action="/UserRegister.action" method="post">
-            <table border="0" class="form-table">
+            <table class="form-table">
                 <tr>
                     <th style="width:100px; height:20px;"></th>
                     <td class="prompt-message">${message}</td>
