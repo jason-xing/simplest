@@ -1,7 +1,8 @@
 #header {
     /* 居中 */
     margin:0px auto;
-    width:1260px;
+    /* width:1260px; */
+    width:1000px;
     height:60px;
     /* 背景图片 */
     background-image:url(../image/background-header.jpg);
@@ -32,7 +33,8 @@
 #prompt {
     /* 居中 */
     margin:0px auto;
-    width:1260px;
+    /* width:1260px; */
+    width:1000px;
     /* height和line-height设置为相等是为了垂直居中 */
     height:17px;
     line-height:17px;
@@ -46,7 +48,8 @@
 #body {
     /* 居中 */
     margin:0px auto;
-    width:1260px;
+    /* width:1260px; */
+    width:1000px;
     height:600px;
     /* 背景图片 */
     background-image:url(../image/background-body.jpg);
@@ -58,7 +61,8 @@
 #footer {
     /* 居中 */
     margin:0px auto;
-    width:1260px;
+    /* width:1260px; */
+    width:1000px;
     /* height和line-height设置为相等是为了垂直居中 */
     height:17px;
     line-height:17px;
@@ -74,7 +78,8 @@
 #menu {
     /* 居中 */
     margin:0px auto;
-    width:1260px;
+    /* width:1260px; */
+    width:1000px;
     height:0px;
     border:0px;
     /* 子元素才能position:absolute */

@@ -70,8 +70,8 @@ public class UserServlet extends HttpServlet {
             logout(req, resp);
         } else if (urlCp.equals("MyInfoEnter")) {
             myInfoEnter(req, resp);
-        } else if (urlCp.equals("MyInfoSave")) {
-            myInfoSave(req, resp);
+        } else if (urlCp.equals("MyInfoModify")) {
+            myInfoModify(req, resp);
         }
     }
     
@@ -179,13 +179,47 @@ public class UserServlet extends HttpServlet {
     
     private void myInfoEnter(HttpServletRequest req, HttpServletResponse resp) 
             throws IOException, ServletException {
-        req.setAttribute("CONTENT_PAGE", "/jsp/security/MyInfo.jsp");
+        User user = (User)req.getSession(false).getAttribute("user");
+        req.setAttribute("CONTENT_PAGE", "/jsp/security/MyInfo.jsp?email=" + user.getEmail());
         forwardTo(MAIN_PAGE, req, resp);
     }
 
-    private void myInfoSave(HttpServletRequest req, HttpServletResponse resp) 
+    private void myInfoModify(HttpServletRequest req, HttpServletResponse resp) 
             throws IOException, ServletException {
+        Locale locale = req.getLocale();
         req.setAttribute("CONTENT_PAGE", "/jsp/security/MyInfo.jsp");
+        String password = StringUtils.trim(req.getParameter("password"));
+        if (password.equals("")) {
+            req.setAttribute("message", Resource.get(locale, "msg.security.PasswordEmpty"));
+            forwardTo(MAIN_PAGE, req, resp);
+            return;
+        }
+        String passwordAgain = StringUtils.trim(req.getParameter("passwordAgain"));
+        if (passwordAgain.equals("")) {
+            req.setAttribute("message", Resource.get(locale, "msg.security.PasswordAgainEmpty"));
+            forwardTo(MAIN_PAGE, req, resp);
+            return;
+        }
+        if (!passwordAgain.equals(password)) {
+            req.setAttribute("message", Resource.get(locale, "msg.security.PasswordAgainNotCorrect"));
+            forwardTo(MAIN_PAGE, req, resp);
+            return;
+        }        
+        String username = StringUtils.trim(req.getParameter("username"));
+        String email = StringUtils.trim(req.getParameter("email"));
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setEmail(email);
+        try {
+            User userReturned = userService.modify(user);
+            // Refresh the info modified into the session
+            HttpSession session = req.getSession(false);
+            session.setAttribute("user", userReturned);
+            req.setAttribute("message", Resource.get(locale, "msg.SubmitSuccess"));
+        } catch (EmailRegisteredException e) {
+            req.setAttribute("message", Resource.get(locale, "msg.security.EmailRegistered"));
+        }
         forwardTo(MAIN_PAGE, req, resp);
     }
     

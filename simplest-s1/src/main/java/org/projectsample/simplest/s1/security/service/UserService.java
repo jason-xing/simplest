@@ -136,4 +136,47 @@ public class UserService {
         return roles;
     }
 
+    /**
+     * modify an user.
+     * 
+     * <p>
+     * Precondition: <br>
+     * the username is not empty;
+     * the password is not empty;
+     * 
+     * @param user an user
+     * 
+     * @throws EmailRegisteredException if the email has been already registered
+     */
+    public User modify(User user) throws EmailRegisteredException {
+        Session session = null;
+        try {
+            session = SessionFactory.openSession();
+            UserDao userDao = new UserDao(session);
+            // Fetch the user from database by username
+            User userFromDb = userDao.getByUsername(user.getUsername());
+            String emailOld = userFromDb.getEmail();
+            String email = user.getEmail();
+            // The email is modified.
+            if (!emailOld.equals(email)) {
+                if (!"".equals(email)) {
+                    User userByEmail = userDao.getByEmail(email);
+                    if (userByEmail != null) {
+                        throw new EmailRegisteredException();
+                    }
+                }
+            }
+            userFromDb.setEmail(email);
+            String passwordEnc = MD5.encodeString(user.getPassword(), null);
+            userFromDb.setPasswordEnc(passwordEnc);
+            userDao.update(userFromDb);
+            session.commit();
+            return userFromDb;
+        } catch (SQLException e) {
+            throw new DbException(e);
+        } finally {
+            session.close();
+        }
+    }
+
 }

@@ -158,12 +158,12 @@ public class Initialize {
             // 插入MyInfoEnter URL权限
             session.execute(PERMISSION_INSERT_SQL, "MyInfoEnter", myInfoEnterUrlId, "VISIT");
             Integer myInfoEnterPermissionId = session.getValue(PERMISSION_MAX_ID_SQL);
-            // 插入MyInfoSave URL
-            session.execute(RESOURCE_INSERT_SQL, "URL", "MyInfoSave", "/MyInfoSave.action");
-            Integer myInfoSaveUrlId = session.getValue(RESOURCE_MAX_ID_SQL);
-            // 插入MyInfoSave URL权限
-            session.execute(PERMISSION_INSERT_SQL, "MyInfoSave", myInfoSaveUrlId, "VISIT");
-            Integer myInfoSavePermissionId = session.getValue(PERMISSION_MAX_ID_SQL);
+            // 插入MyInfoModify URL
+            session.execute(RESOURCE_INSERT_SQL, "URL", "MyInfoModify", "/MyInfoModify.action");
+            Integer myInfoModifyUrlId = session.getValue(RESOURCE_MAX_ID_SQL);
+            // 插入MyInfoModify URL权限
+            session.execute(PERMISSION_INSERT_SQL, "MyInfoModify", myInfoModifyUrlId, "VISIT");
+            Integer myInfoModifyPermissionId = session.getValue(PERMISSION_MAX_ID_SQL);
 
             // 插入基础角色（根角色）
             session.execute(ROLE_INSERT_SQL, "BaseRole", null);
@@ -172,8 +172,8 @@ public class Initialize {
             session.execute(ROLE_PERMISSION_INSERT_SQL, baseRoleId, userLogoutPermissionId);
             // 为基础角色分配MyInfoEnter URL权限
             session.execute(ROLE_PERMISSION_INSERT_SQL, baseRoleId, myInfoEnterPermissionId);
-            // 为基础角色分配MyInfoSave URL权限
-            session.execute(ROLE_PERMISSION_INSERT_SQL, baseRoleId, myInfoSavePermissionId);
+            // 为基础角色分配MyInfoModify URL权限
+            session.execute(ROLE_PERMISSION_INSERT_SQL, baseRoleId, myInfoModifyPermissionId);
             // 插入普通角色
             session.execute(ROLE_INSERT_SQL, "CommonRole", baseRoleId);
             // 以下是两个比较特殊的角色

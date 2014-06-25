@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <fmt:setBundle basename="i18n/resource"/>
-<form action="/MyInfoSave.action" method="post">
+<form action="/MyInfoModify.action" method="post">
     <table class="form-table" style="margin:100px auto">
         <tr>
             <th><fmt:message key="ui.security.text.Username"/>:</th>
@@ -16,7 +16,7 @@
         </tr>
         <tr>
             <th><fmt:message key="ui.security.text.Email"/>:</th>
-            <td><input type="text" name="email" class="text-input" style="width:180px" value="${sessionScope.user.email}"/></td>
+            <td><input type="text" name="email" class="text-input" style="width:180px" value="${param.email}"/></td>
         </tr>
         <tr>
             <th style="height:30px;"></th>
