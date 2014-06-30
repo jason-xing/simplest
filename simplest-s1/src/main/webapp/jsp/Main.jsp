@@ -10,7 +10,7 @@
 <body>
 <div id="header"><%@ include file="Header.jsp" %></div>
 <div id="menu"><%@ include file="Menu.jsp" %></div>
-<div id="prompt"><%@ include file="Prompt.jsp"%></div>
+<div id="tips"><%@ include file="Tips.jsp"%></div>
 <div id="body"><jsp:include page="${CONTENT_PAGE}"/></div>
 <div id="footer"><%@ include file="Footer.jsp" %></div>
 </body>

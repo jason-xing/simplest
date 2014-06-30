@@ -16,7 +16,7 @@
             <table class="form-table">
                 <tr>
                     <th style="width:100px; height:20px;"></th>
-                    <td class="prompt-message">${message}</td>
+                    <td class="tips-message">${message}</td>
                 </tr>
                 <tr>
                     <th><fmt:message key="ui.security.text.Username"/>:</th>
