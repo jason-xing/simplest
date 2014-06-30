@@ -6,6 +6,7 @@
 <head>
 <title><fmt:message key="ui.ProjectName"/></title>
 <link rel="stylesheet" type="text/css" href="css/global.css"/>
+<link rel="stylesheet" type="text/css" href="css/smart-box.css"/>
 </head>
 <body>
 <div class="smart-box-layout">

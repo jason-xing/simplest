@@ -3,13 +3,13 @@ body {
     margin:0px;
     font-size:13px;
     font-family:Georgia, serif;
-    background-color:#E5E5E5;
 }
 
 .text-input {
     border:1px solid;
 }
 .submit-button {
+    background-color:#CCCC33;
     border:1px solid;
 }
 
@@ -21,35 +21,7 @@ body {
     font-weight:normal;
 }
 
-a {
-    color:black;
-    text-decoration:none;
-}
-
 .tips-message {
-    color:#FF0000;
-}
-
-.smart-box-layout {
-    margin:200px auto;
-    margin-bottom:0px;
-    width:360px;
-    /* 圆角 */
-    border-radius:10px;
-    /* 背景图片 */
-    background-image:url(../image/background-login.jpg);
-    /* 背景图片放到层的位置 */
-    background-position:bottom;
-}
-.smart-box-header {
-    /* height和line-height设置为相等是为了垂直居中 */
-    height:30px;
-    line-height:30px;
-    padding-left:10px;
-    border-bottom:1px ridge;
+    color:#CC6600;
     font-weight:bold;
-}
-.smart-box-body {
-    padding-top:5px;
-    padding-bottom:20px;
 }

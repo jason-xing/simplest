@@ -1,16 +1,10 @@
+/* 背景色"#E6E6E6"是10%亮灰 */
 #header {
     /* 居中 */
     margin:0px auto;
-    width:1260px;
-    /* width:1000px; */
     height:60px;
-    /* 背景图片 */
-    background-image:url(../image/background-header.jpg);
-    /* 背景图片放到层的位置。横向 纵向 */
-    background-position:0px -340px;
+    background-color:#E6E6E6;
     border-top:1px solid;
-    border-left:1px solid;
-    border-right:1px solid;
     /* 子元素才能position:absolute */
     position:relative;
 }
@@ -33,44 +27,30 @@
 #tips {
     /* 居中 */
     margin:0px auto;
-    width:1260px;
-    /* width:1000px; */
     /* height和line-height设置为相等是为了垂直居中 */
     height:17px;
     line-height:17px;
-    /* 背景图片 */
-    background-image:url(../image/background-body.jpg);
+    background-color:#E6E6E6;
     border-top:1px solid;
-    border-left:1px solid;
-    border-right:1px solid;
 }
 
 #body {
     /* 居中 */
     margin:0px auto;
-    width:1260px;
-    /* width:1000px; */
-    height:600px;
-    /* 背景图片 */
-    background-image:url(../image/background-body.jpg);
+    height:750px;
+    background-color:#E6E6E6;
     border-top:1px solid;
-    border-left:1px solid;
-    border-right:1px solid;
 }
 
 #footer {
     /* 居中 */
     margin:0px auto;
-    width:1260px;
-    /* width:1000px; */
     /* height和line-height设置为相等是为了垂直居中 */
     height:17px;
     line-height:17px;
-    /* 背景图片 */
-    background-image:url(../image/background-header.jpg);
-    /* 背景图片放到层的位置。横向 纵向 */
-    background-position:0px -340px;
-    border:1px solid;
+    background-color:#E6E6E6;
+    border-top:1px solid;
+    border-bottom:1px solid;
     text-align:center;
 }
 
@@ -78,8 +58,6 @@
 #menu {
     /* 居中 */
     margin:0px auto;
-    width:1260px;
-    /* width:1000px; */
     height:0px;
     border:0px;
     /* 子元素才能position:absolute */
@@ -118,8 +96,9 @@
     /* 圆角 */
     border-top-left-radius:6px;
     border-top-right-radius:6px;
-    background-color:#669DE0;
+    background-color:#E6E6E6;
     text-align:center;
+    color:#000000;
 }
 /* 二级菜单(一级菜单列表项下的ul部分) */
 #menuInner li ul {
@@ -141,7 +120,7 @@
 /* 二级菜单项(二级菜单列表项下的链接部分) */
 #menuInner li ul li a {
     /* 使用图片没必要，元素太小 */
-    background-color:#669DE0;
+    background-color:#E6E6E6;
     /* 清除上级的圆角样式的影响 */
     border-top-left-radius:0px;
     border-top-right-radius:0px;
@@ -149,5 +128,5 @@
 /* 鼠标放到菜单项时，菜单项的样式。注意：二级菜单项也会应用到该样式的 */
 #menuInner li a:hover {
     /* 使用背景图片没必要，元素太小 */
-    background-color:#E5E5E5;
+    background-color:#FFFFFF;
 }
