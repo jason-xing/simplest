@@ -80,13 +80,13 @@ public class SecurityFilter implements Filter {
                 // Already login
                 } else if (session.getAttribute("user") != null) {
                     @SuppressWarnings("unchecked")
-					Set<String> urls = (Set<String>)session.getAttribute("urls");
+                    Set<String> urls = (Set<String>)session.getAttribute("urls");
                     // Throw NoPermissionException if the path is neither 
                     // in the URLs of the user nor in the URLs of Anonymous.
                     if (!urls.contains(path)) {
                         throw new NoPermissionException();
                     }
-                }  else {
+                } else {
                     throw new RuntimeException();
                 }
             }
