@@ -145,13 +145,13 @@ public class Initialize {
             // 插入UserRegisterEnter URL权限
             session.execute(PERMISSION_INSERT_SQL, "UserRegisterEnter", userRegisterEnterUrlId, "VISIT");
             Integer userRegisterEnterPermissionId = session.getValue(PERMISSION_MAX_ID_SQL);
-
             // 插入UserLogout URL
             session.execute(RESOURCE_INSERT_SQL, "URL", "UserLogout", "/UserLogout.action");
             Integer userLogoutUrlId = session.getValue(RESOURCE_MAX_ID_SQL);
             // 插入UserLogout URL权限
             session.execute(PERMISSION_INSERT_SQL, "UserLogout", userLogoutUrlId, "VISIT");
             Integer userLogoutPermissionId = session.getValue(PERMISSION_MAX_ID_SQL);
+
             // 插入MyInfoEnter URL
             session.execute(RESOURCE_INSERT_SQL, "URL", "MyInfoEnter", "/MyInfoEnter.action");
             Integer myInfoEnterUrlId = session.getValue(RESOURCE_MAX_ID_SQL);
@@ -168,8 +168,6 @@ public class Initialize {
             // 插入基础角色（根角色）
             session.execute(ROLE_INSERT_SQL, "BaseRole", null);
             Integer baseRoleId = session.getValue(ROLE_MAX_ID_SQL);
-            // 为基础角色分配UserLogout URL权限
-            session.execute(ROLE_PERMISSION_INSERT_SQL, baseRoleId, userLogoutPermissionId);
             // 为基础角色分配MyInfoEnter URL权限
             session.execute(ROLE_PERMISSION_INSERT_SQL, baseRoleId, myInfoEnterPermissionId);
             // 为基础角色分配MyInfoModify URL权限
@@ -183,6 +181,8 @@ public class Initialize {
             // 插入匿名者角色
             session.execute(ROLE_INSERT_SQL, "Anonymous", null);
             Integer anonymousRoleId = session.getValue(ROLE_MAX_ID_SQL);
+            // 为匿名者角色分配UserLogout URL权限
+            session.execute(ROLE_PERMISSION_INSERT_SQL, anonymousRoleId, userLogoutPermissionId);
             // 为匿名者角色分配UserLogin URL权限
             session.execute(ROLE_PERMISSION_INSERT_SQL, anonymousRoleId, userLoginPermissionId);
             // 为匿名者角色分配UserRegister URL权限

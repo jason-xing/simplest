@@ -73,12 +73,8 @@ public class SecurityFilter implements Filter {
             if (urlsOfAnonymous.contains(path)) {
                 // Pass
             } else {
-                // the session is invalid.
-                // Such as: not login, logout, session timeout
-                if (session == null) {
-                    throw new SessionInvalidException();
                 // Already login
-                } else if (session.getAttribute("user") != null) {
+                if (session != null && session.getAttribute("user") != null) {
                     @SuppressWarnings("unchecked")
                     Set<String> urls = (Set<String>)session.getAttribute("urls");
                     // Throw NoPermissionException if the path is neither 
@@ -86,8 +82,10 @@ public class SecurityFilter implements Filter {
                     if (!urls.contains(path)) {
                         throw new NoPermissionException();
                     }
+                // The session is invalid.
+                // Such as: not login, logout, session timeout
                 } else {
-                    throw new RuntimeException();
+                    throw new SessionInvalidException();
                 }
             }
         }
