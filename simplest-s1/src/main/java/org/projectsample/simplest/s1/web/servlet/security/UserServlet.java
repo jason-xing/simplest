@@ -173,7 +173,9 @@ public class UserServlet extends HttpServlet {
     private void logout(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         HttpSession session = req.getSession(false);
-        session.invalidate();
+        if (session != null) {
+            session.invalidate();
+        }
         forwardTo(INDEX_PAGE, req, resp);
     }
     
@@ -189,22 +191,12 @@ public class UserServlet extends HttpServlet {
         Locale locale = req.getLocale();
         req.setAttribute("CONTENT_PAGE", "/jsp/security/MyInfo.jsp");
         String password = StringUtils.trim(req.getParameter("password"));
-        if (password.equals("")) {
-            req.setAttribute("message", Resource.get(locale, "msg.security.PasswordEmpty"));
-            forwardTo(MAIN_PAGE, req, resp);
-            return;
-        }
         String passwordAgain = StringUtils.trim(req.getParameter("passwordAgain"));
-        if (passwordAgain.equals("")) {
-            req.setAttribute("message", Resource.get(locale, "msg.security.PasswordAgainEmpty"));
-            forwardTo(MAIN_PAGE, req, resp);
-            return;
-        }
         if (!passwordAgain.equals(password)) {
             req.setAttribute("message", Resource.get(locale, "msg.security.PasswordAgainNotCorrect"));
             forwardTo(MAIN_PAGE, req, resp);
             return;
-        }        
+        }
         String username = StringUtils.trim(req.getParameter("username"));
         String email = StringUtils.trim(req.getParameter("email"));
         User user = new User();

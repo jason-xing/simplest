@@ -140,9 +140,9 @@ public class UserService {
      * modify an user.
      * 
      * <p>
+     * If the password is empty, it won't modify the password.<br>
      * Precondition: <br>
      * the username is not empty;
-     * the password is not empty;
      * 
      * @param user an user
      * 
@@ -155,10 +155,10 @@ public class UserService {
             UserDao userDao = new UserDao(session);
             // Fetch the user from database by username
             User userFromDb = userDao.getByUsername(user.getUsername());
-            String emailOld = userFromDb.getEmail();
+            String emailFromDb = userFromDb.getEmail();
             String email = user.getEmail();
             // The email is modified.
-            if (!emailOld.equals(email)) {
+            if (!emailFromDb.equals(email)) {
                 if (!"".equals(email)) {
                     User userByEmail = userDao.getByEmail(email);
                     if (userByEmail != null) {
@@ -167,8 +167,11 @@ public class UserService {
                 }
             }
             userFromDb.setEmail(email);
-            String passwordEnc = MD5.encodeString(user.getPassword(), null);
-            userFromDb.setPasswordEnc(passwordEnc);
+            String password = user.getPassword();
+            // If the password is not empty, it will modify the password, otherwise not.
+            if (!password.equals("")) {
+                userFromDb.setPasswordEnc(MD5.encodeString(password, null));
+            }
             userDao.update(userFromDb);
             session.commit();
             return userFromDb;

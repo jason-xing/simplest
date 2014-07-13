@@ -8,6 +8,6 @@
 <title><fmt:message key="ui.text.Exception"/></title>
 </head>
 <body>
-<fmt:message key="msg.security.InvalidUrl"/>.
+<fmt:message key="ui.security.InvalidUrl"/>
 </body>
 </html>

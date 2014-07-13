@@ -8,6 +8,7 @@
 <title><fmt:message key="ui.text.Exception"/></title>
 </head>
 <body>
-<fmt:message key="msg.security.SessionInvalid"/>.
+<fmt:message key="ui.security.SessionInvalid"/><fmt:message key="ui.text.Comma"/>
+<fmt:message key="ui.security.Please"/><a href="/"><fmt:message key="ui.security.Login"/></a>
 </body>
 </html>
