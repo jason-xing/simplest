@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title><fmt:message key="ui.ProjectName"/></title>
+<script src="jquery/jquery-2.1.1.js"></script>
 <link rel="stylesheet" type="text/css" href="css/global.css"/>
 <link rel="stylesheet" type="text/css" href="css/main.css"/>
 </head>
