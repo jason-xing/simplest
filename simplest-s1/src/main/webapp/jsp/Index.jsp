@@ -9,18 +9,26 @@
 <link rel="stylesheet" type="text/css" href="css/smart-box.css"/>
 <script>
 $(function() {
-    $(".submit-button").click(
+    $("#login-button").click(
         function() {
             var tipsMessage = $(".tips-message");
-            if ($("#username").val().trim() == "") {
+            if ($('input[name="username"]').val().trim() == "") {
                 tipsMessage.text($("#msg1").val());
                 return;
             }
-            if ($("#password").val().trim() == "") {
-            	tipsMessage.text($("#msg2").val());
+            if ($('input[name="password"]').val().trim() == "") {
+                tipsMessage.text($("#msg2").val());
                 return;
             }
             document.forms[0].submit();
+        }
+    );
+    $('input[name="password"]').keydown(
+        function(event) {
+            if (event.keyCode == 13) {
+                $("#login-button").click();
+                return false;
+            }
         }
     );
 });
@@ -40,17 +48,17 @@ $(function() {
                 </tr>
                 <tr>
                     <th><fmt:message key="ui.security.text.Username"/>:</th>
-                    <td><input type="text" id="username" name="username" class="text-input" style="width:180px"/></td>
+                    <td><input type="text" name="username" class="text-input" style="width:180px"/></td>
                 </tr>
                 <tr>
                     <th><fmt:message key="ui.security.text.Password"/>:</th>
-                    <td><input type="password" id="password" name="password" class="text-input" style="width:180px"/></td>
+                    <td><input type="password" name="password" class="text-input" style="width:180px"/></td>
                 </tr>
                 <tr>
                     <th style="height:30px;"></th>
                     <td>
-                        <input type="button" value="<fmt:message key="ui.security.button.Login"/>" class="submit-button"/>
-                        <a href="/UserRegisterEnter.action" style="margin-left:50px;"><fmt:message key="ui.security.button.Register"/></a>
+                        <input type="button" id="login-button" value="<fmt:message key="ui.security.button.Login"/>" class="button"/>
+                        <a href="/UserRegisterEnter.action" class="button" style="margin-left:50px;"><fmt:message key="ui.security.button.Register"/></a>
                     </td>
                 </tr>
             </table>

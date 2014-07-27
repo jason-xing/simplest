@@ -2,11 +2,11 @@
 <fmt:setBundle basename="i18n/resource"/>
 <script>
 $(function() {
-    $(".submit-button").click(
+    $("#save-button").click(
         function() {
             var tipsMessage = $(".tips-message");
-            var password = $("#password").val().trim();
-            if (password != "" && password != $("#passwordAgain").val().trim()) {
+            var password = $('input[name="password"]').val().trim();
+            if (password != "" && password != $('input[name="passwordAgain"]').val().trim()) {
                 tipsMessage.text($("#msg1").val());
                 return;
             }
@@ -23,11 +23,11 @@ $(function() {
         </tr>
         <tr>
             <th><fmt:message key="ui.security.text.Password"/>:</th>
-            <td><input type="password" id="password" name="password" class="text-input" style="width:180px"/></td>
+            <td><input type="password" name="password" class="text-input" style="width:180px"/></td>
         </tr>
         <tr>
             <th><fmt:message key="ui.security.text.PasswordAgain"/>:</th>
-            <td><input type="password" id="passwordAgain" name="passwordAgain" class="text-input" style="width:180px"/></td>
+            <td><input type="password" name="passwordAgain" class="text-input" style="width:180px"/></td>
         </tr>
         <tr>
             <th><fmt:message key="ui.security.text.Email"/>:</th>
@@ -36,7 +36,7 @@ $(function() {
         <tr>
             <th style="height:30px;"></th>
             <td>
-                <input type="button" value="<fmt:message key="ui.button.Save"/>" class="submit-button"/>
+                <input type="button" id="save-button" value="<fmt:message key="ui.button.Save"/>" class="button"/>
             </td>
         </tr>
     </table>
